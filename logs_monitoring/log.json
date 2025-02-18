@@ -1,0 +1,80 @@
+[
+    {
+        "request": {
+            "data": [
+                1,
+                78,
+                41,
+                33,
+                311,
+                50.79639151,
+                0.420803683,
+                24
+            ],
+            "features": [
+                "Pregnancies",
+                "PlasmaGlucose",
+                "DiastolicBloodPressure",
+                "TricepsThickness",
+                "SerumInsulin",
+                "BMI",
+                "DiabetesPedigree",
+                "Age"
+            ]
+        },
+        "response": "Not Diabetic",
+        "time": "2025-02-11T14:16:34"
+    },
+    {
+        "request": {
+            "data": [
+                10,
+                119,
+                71,
+                14,
+                398,
+                27.04504242,
+                0.975376187,
+                47
+            ],
+            "features": [
+                "Pregnancies",
+                "PlasmaGlucose",
+                "DiastolicBloodPressure",
+                "TricepsThickness",
+                "SerumInsulin",
+                "BMI",
+                "DiabetesPedigree",
+                "Age"
+            ]
+        },
+        "response": "Diabetic",
+        "time": "2025-02-14T11:36:46"
+    },
+    {
+        "request": {
+            "data": [
+                10,
+                119,
+                71,
+                14,
+                398,
+                27.04504242,
+                0.975376187,
+                47
+            ],
+            "features": [
+                "Pregnancies",
+                "PlasmaGlucose",
+                "DiastolicBloodPressure",
+                "TricepsThickness",
+                "SerumInsulin",
+                "BMI",
+                "DiabetesPedigree",
+                "Age"
+            ]
+        },
+        "response": "Diabetic",
+        "time": "2025-02-14T11:37:42"
+    }
+]

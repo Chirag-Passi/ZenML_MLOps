@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_DIR = "venv"          // Directory for virtual environment
+        FLASK_APP = "app.py"       // Flask application file
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from the repository
+                checkout scm
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                script {
+                    // On Windows, use Python to create a virtual environment
+                    bat 'python -m venv %VENV_DIR%'
+
+                    // Activate virtual environment and install dependencies on Windows
+                    bat '''
+                        %VENV_DIR%\\Scripts\\activate
+                        pip install -r requirements.txt
+                    '''
+                }
+            }
+        }
+
+        stage('Run ZenML Pipeline') {
+            steps {
+                script {
+                    // Activate the virtual environment and run the ZenML pipeline (main.py)
+                    bat '''
+                        %VENV_DIR%\\Scripts\\activate
+                        python main.py
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy Flask App') {
+            steps {
+                script {
+                    // Activate the virtual environment and run the Flask app (app.py)
+                    // This will keep running until manually stopped or a process manager is used.
+                    bat '''
+                        %VENV_DIR%\\Scripts\\activate
+                        python app.py
+                    '''
+                }
+            }
+        }
+
+    }
+
+    post {
+        always {
+            // Deactivate virtual environment (Windows)
+            script {
+                bat 'call %VENV_DIR%\\Scripts\\deactivate || exit 0'
+            }
+        }
+        failure {
+            // Handle failure, send notifications, etc.
+            echo 'Pipeline failed.'
+        }
+        success {
+            // Handle success, e.g., deploy notification
+            echo 'Pipeline succeeded.'
+        }
+    }
+}
